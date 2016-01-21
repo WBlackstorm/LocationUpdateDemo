@@ -12,6 +12,13 @@
     android:gravity="center">
 
     <TextView
+        android:id="@+id/txt_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Trying to get your location..." />
+
+    <TextView
         android:id="@+id/txt_latitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,4 +31,13 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:text="Longitude: 0.0" />
+
+    <TextView
+        android:id="@+id/txt_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="" />
+
+
 </LinearLayout>
