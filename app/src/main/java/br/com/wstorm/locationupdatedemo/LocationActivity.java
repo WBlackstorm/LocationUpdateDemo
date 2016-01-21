@@ -15,8 +15,8 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 public class LocationActivity extends AppCompatActivity implements
-        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -67,7 +67,12 @@ public class LocationActivity extends AppCompatActivity implements
             mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
             LocationServices.FusedLocationApi.requestLocationUpdates(
-                    mGoogleApiClient, mLocationRequest, this);
+                    mGoogleApiClient, mLocationRequest, new LocationListener() {
+                        @Override
+                        public void onLocationChanged(Location location) {
+                            updateValues(location);
+                        }
+                    });
 
             if (mLastLocation != null) {
                 updateValues(mLastLocation);
@@ -89,11 +94,6 @@ public class LocationActivity extends AppCompatActivity implements
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        updateValues(location);
     }
 
     private void updateValues(Location location) {
